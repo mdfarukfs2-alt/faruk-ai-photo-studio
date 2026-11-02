@@ -1,18 +1,26 @@
-FARUK AI PHOTO STUDIO — প্রাথমিক PWA সংস্করণ
+FARUK AI PHOTO STUDIO — AI upgrade package (beta)
 
-এই প্যাকেজে আছে:
-- index.html: মোবাইল-ফ্রেন্ডলি ওয়েব অ্যাপ
-- manifest.json: Home Screen install পরিচিতি
-- sw.js: Service Worker / basic offline caching
-- icon.svg: অ্যাপ আইকন
+ফাইল:
+- index.html: আপগ্রেড করা মোবাইল-ফ্রেন্ডলি এডিটর
+- manifest.json: PWA metadata
+- sw.js: basic same-origin cache
+- icon.svg: app icon
 
-চালানোর নিয়ম:
-১) ZIP ফাইলটি Extract করুন।
-২) ফাইলগুলো একসাথে কোনো HTTPS static hosting-এ আপলোড করুন (যেমন GitHub Pages বা Netlify-এর free tier)।
-৩) প্রকাশিত HTTPS লিংক Android Chrome-এ খুলুন।
-৪) Chrome menu থেকে Install app / Add to Home screen নির্বাচন করুন।
+GitHub Pages-এ আপডেট:
+1) ZIP extract করুন।
+2) GitHub repository খুলুন → Add file → Upload files।
+3) ZIP-এর ভেতরের চারটি ফাইল (index.html, manifest.json, sw.js, icon.svg) repository-র মূল root-এ upload করুন; ZIP ফাইলটি নিজে upload করলে সাইটের ফাইল বদলাবে না।
+4) index.html overwrite/replace করুন, তারপর Commit changes চাপুন।
+5) Pages deploy হওয়ার পর ওয়েবসাইট খুলে browser cache clear/refresh করুন। Android Chrome-এ দরকার হলে site data/cache clear করে আবার খুলুন।
 
-সীমাবদ্ধতা:
-এটি প্রথম কার্যকর প্রোটোটাইপ। অটোমেটিক কালার, আলো, কনট্রাস্ট ও হালকা শার্পনেস উন্নত করে।
-এখনো প্রকৃত AI segmentation-ভিত্তিক DSLR background blur, face-specific enhancement এবং AI upscaling যুক্ত হয়নি।
-এই সংস্করণে ছবি ব্রাউজারেই প্রসেস হয়; কোনো সার্ভারে আপলোড করা হয় না।
+AI মডেল:
+- Background removal/matting: Xenova/modnet via Transformers.js (Apache-2.0 model card).
+- Super-resolution: onnx-community/swin2SR-classical-sr-x2-64 via Transformers.js.
+মডেলগুলো প্রথমবার Hugging Face/CDN থেকে ডাউনলোড হয়; তাই ইন্টারনেট ও বড় ডাউনলোড প্রয়োজন। মডেল/ব্রাউজার/ডিভাইস অনুযায়ী ব্যর্থ হতে পারে। ছবির প্রসেসিং ব্রাউজারে হয়, তবে মডেল ফাইল তৃতীয়-পক্ষের CDN/repository থেকে ডাউনলোড হয়।
+
+সততা ও সীমাবদ্ধতা:
+- এই প্যাকেজে background blur ও super-resolution-এ প্রকৃত pretrained model inference যুক্ত করার চেষ্টা আছে, কিন্তু এই পরিবেশে Android/browser-এ runtime inference চালিয়ে যাচাই করা সম্ভব হয়নি। সাইটে আপলোডের পর প্রতিটি মডেল বাস্তবে পরীক্ষা করুন।
+- Color Enhance হলো pixel-based correction, AI model নয়।
+- Face Detail Enhance হলো conservative sharpening; প্রকৃত GFPGAN/CodeFormer face restoration model এখনো সংযুক্ত নয়। একে AI face restoration বলা হচ্ছে না।
+- Upscale এবং Restoration একই Swin2SR super-resolution model ব্যবহার করে; এটি সাধারণ super-resolution, পূর্ণাঙ্গ damaged-photo restoration নয়।
+- কোনো paid API key নেই; CDN ও model repository ব্যবহারে ব্যবহারকারীর নেট সংযোগ/ডেটা লাগবে।
