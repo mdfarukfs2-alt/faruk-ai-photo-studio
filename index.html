@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171923">
+<title>FARUK AI PHOTO STUDIO</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#10131b;--panel:#191f2c;--gold:#d9b66f;--muted:#aeb7c6;--line:#30394a}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#10131b,#1b2230);color:#f7f7f7;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;min-height:100vh}
+main{width:min(720px,100%);margin:auto;padding:22px 16px 40px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:22px}.logo{width:48px;height:48px;border-radius:15px;background:#242b39;border:1px solid #55472e;display:grid;place-items:center;color:var(--gold);font-size:23px}
+h1{font-size:19px;margin:0;letter-spacing:.3px}header p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.card{background:rgba(25,31,44,.96);border:1px solid var(--line);border-radius:20px;padding:16px;margin:14px 0;box-shadow:0 12px 30px #0003}
+.upload{border:1.5px dashed #78643d;border-radius:16px;padding:26px 14px;text-align:center;background:#202838}
+.upload strong{display:block;margin:8px 0 4px}.muted{color:var(--muted);font-size:13px}
+button,.filebtn{border:0;border-radius:12px;padding:13px 17px;font-weight:700;background:var(--gold);color:#171923;cursor:pointer;font-size:14px}
+button.secondary{background:#30394a;color:#fff}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.actions button{flex:1}
+input[type=file]{display:none}
+.preview{display:none;margin-top:14px}.preview img{display:block;width:100%;max-height:520px;object-fit:contain;border-radius:13px;background:#0b0d12}
+.status{font-size:13px;color:#c9d1de;margin-top:10px;min-height:20px}
+h2{font-size:16px;margin:0 0 12px}.features{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feature{background:#222b3b;border-radius:12px;padding:12px;font-size:13px}.feature b{display:block;color:var(--gold);margin-bottom:3px}
+.note{font-size:12px;line-height:1.6;color:#aeb7c6}
+footer{text-align:center;color:#8792a4;font-size:11px;padding:14px}
+@media(max-width:420px){main{padding:17px 12px}.features{grid-template-columns:1fr 1fr}.actions button{min-width:130px}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="logo">✦</div><div><h1>FARUK AI PHOTO STUDIO</h1><p>Automatic Photo Enhancement • Mobile Edition</p></div></header>
+<section class="card">
+ <div class="upload" id="drop">
+  <div style="font-size:32px">📷</div>
+  <strong>আপনার ছবি আপলোড করুন</strong>
+  <div class="muted">JPG, PNG বা WebP ছবি নির্বাচন করুন</div>
+  <div class="actions" style="justify-content:center"><label class="filebtn" for="photo">ছবি নির্বাচন করুন</label></div>
+  <input id="photo" type="file" accept="image/*">
+ </div>
+ <div class="preview" id="preview"><img id="photoView" alt="আপনার ছবি"><div class="status" id="status">ছবি প্রস্তুত।</div></div>
+ <div class="actions">
+  <button id="enhance" disabled>✨ AUTO ENHANCE</button>
+  <button class="secondary" id="download" disabled>HD DOWNLOAD</button>
+ </div>
+</section>
+<section class="card">
+<h2>অটোমেটিক এডিটিং সেটিংস</h2>
+<div class="features">
+ <div class="feature"><b>✓ Natural Color</b>আকাশ ও প্রকৃতির রং ভারসাম্যপূর্ণ</div>
+ <div class="feature"><b>✓ Face Preservation</b>মুখের গঠন বা পরিচয় বদলাবে না</div>
+ <div class="feature"><b>✓ Light & Contrast</b>আলো ও কনট্রাস্ট উন্নত</div>
+ <div class="feature"><b>✓ Detail Enhancement</b>হালকা শার্পনেস বৃদ্ধি</div>
+</div>
+<p class="note">গুরুত্বপূর্ণ: এই প্রাথমিক সংস্করণে ছবির পিক্সেল-ভিত্তিক কালার ও আলো উন্নত করা হয়; AI দিয়ে মুখ নতুন করে তৈরি করা হয় না। প্রকৃত DSLR ব্যাকগ্রাউন্ড ব্লার ও AI আপস্কেল পরবর্তী সংস্করণে আলাদা segmentation/upscaling মডেল যুক্ত করে যোগ করতে হবে।</p>
+</section>
+<footer>FARUK AI PHOTO STUDIO • Your photo stays in your browser in this demo.</footer>
+</main>
+<script>
+const fileInput=document.getElementById('photo'), view=document.getElementById('photoView'), preview=document.getElementById('preview');
+const enhanceBtn=document.getElementById('enhance'), downloadBtn=document.getElementById('download'), statusEl=document.getElementById('status');
+let original=null, outputCanvas=null, originalName='photo';
+fileInput.addEventListener('change',()=>{
+ const f=fileInput.files[0]; if(!f)return;
+ if(!f.type.startsWith('image/')){statusEl.textContent='একটি ছবি নির্বাচন করুন।';return;}
+ originalName=(f.name.replace(/\.[^.]+$/,'')||'photo');
+ const url=URL.createObjectURL(f); view.src=url; preview.style.display='block';
+ const img=new Image(); img.onload=()=>{original=img;enhanceBtn.disabled=false;downloadBtn.disabled=true;statusEl.textContent='ছবি প্রস্তুত। AUTO ENHANCE চাপুন।';}; img.src=url;
+});
+enhanceBtn.addEventListener('click',()=>{
+ if(!original)return;
+ statusEl.textContent='ছবি উন্নত করা হচ্ছে…';
+ requestAnimationFrame(()=>{
+  const max=3000, scale=Math.min(1,max/Math.max(original.naturalWidth,original.naturalHeight));
+  const w=Math.round(original.naturalWidth*scale),h=Math.round(original.naturalHeight*scale);
+  const c=document.createElement('canvas');c.width=w;c.height=h;
+  const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(original,0,0,w,h);
+  const im=ctx.getImageData(0,0,w,h),d=im.data;
+  // Gentle, non-generative tonal and color enhancement. Pixel geometry and facial identity remain untouched.
+  for(let i=0;i<d.length;i+=4){
+   let r=d[i]/255,g=d[i+1]/255,b=d[i+2]/255;
+   // mild exposure lift and contrast
+   const lift=0.018, contrast=1.055;
+   r=(r+lift-.5)*contrast+.5;g=(g+lift-.5)*contrast+.5;b=(b+lift-.5)*contrast+.5;
+   // subtle saturation boost
+   const lum=.2126*r+.7152*g+.0722*b, sat=1.075;
+   r=lum+(r-lum)*sat;g=lum+(g-lum)*sat;b=lum+(b-lum)*sat;
+   // gentle highlight protection and clamp
+   d[i]=Math.max(0,Math.min(255,r*255));d[i+1]=Math.max(0,Math.min(255,g*255));d[i+2]=Math.max(0,Math.min(255,b*255));
+  }
+  ctx.putImageData(im,0,0);
+  // Subtle unsharp mask using a temporary downscaled blur canvas.
+  const blur=document.createElement('canvas');blur.width=w;blur.height=h;
+  const bctx=blur.getContext('2d');bctx.filter='blur(1px)';bctx.drawImage(c,0,0);
+  const sharp=ctx.getImageData(0,0,w,h), soft=bctx.getImageData(0,0,w,h);
+  for(let i=0;i<sharp.data.length;i+=4){for(let k=0;k<3;k++){sharp.data[i+k]=Math.max(0,Math.min(255,sharp.data[i+k]+(sharp.data[i+k]-soft.data[i+k])*.22));}}
+  ctx.putImageData(sharp,0,0);
+  outputCanvas=c;view.src=c.toDataURL('image/jpeg',.94);downloadBtn.disabled=false;
+  statusEl.textContent='সম্পন্ন! ছবিটি এখন HD JPEG হিসেবে ডাউনলোড করতে পারবেন।';
+ });
+});
+downloadBtn.addEventListener('click',()=>{
+ if(!outputCanvas)return;
+ const a=document.createElement('a');a.download=originalName+'-faruk-ai-enhanced.jpg';a.href=outputCanvas.toDataURL('image/jpeg',.96);a.click();
+});
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>
