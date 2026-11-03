@@ -1,138 +1,132 @@
 <!doctype html>
 <html lang="bn">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#171923"><title>FARUK AI PHOTO STUDIO</title>
-<link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
-:root{--bg:#10131b;--panel:#191f2c;--gold:#d9b66f;--muted:#aeb7c6;--line:#30394a}
+:root{--bg:#10131b;--panel:#191f2c;--panel2:#222b3b;--gold:#d9b66f;--muted:#aeb7c6;--line:#30394a}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#10131b,#1b2230);color:#f7f7f7;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;min-height:100vh}
-main{width:min(760px,100%);margin:auto;padding:22px 16px 40px}header{display:flex;align-items:center;gap:12px;margin-bottom:22px}
-.logo{width:48px;height:48px;border-radius:15px;background:#242b39;border:1px solid #55472e;display:grid;place-items:center;color:var(--gold);font-size:23px}
-h1{font-size:19px;margin:0;letter-spacing:.3px}header p{margin:3px 0 0;color:var(--muted);font-size:12px}
-.card{background:rgba(25,31,44,.96);border:1px solid var(--line);border-radius:20px;padding:16px;margin:14px 0;box-shadow:0 12px 30px #0003}
-.upload{border:1.5px dashed #78643d;border-radius:16px;padding:26px 14px;text-align:center;background:#202838}.upload strong{display:block;margin:8px 0 4px}.muted{color:var(--muted);font-size:13px}
-button,.filebtn{border:0;border-radius:12px;padding:12px 14px;font-weight:700;background:var(--gold);color:#171923;cursor:pointer;font-size:14px}
-button.secondary{background:#30394a;color:#fff}button:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.actions button{flex:1;min-width:130px}
-input[type=file]{display:none}.preview{display:none;margin-top:14px}.preview img{display:block;width:100%;max-height:520px;object-fit:contain;border-radius:13px;background:#0b0d12}
-.status{font-size:13px;color:#c9d1de;margin-top:10px;min-height:20px;line-height:1.5}
-h2{font-size:16px;margin:0 0 12px}.features{display:grid;grid-template-columns:1fr 1fr;gap:10px}.feature{background:#222b3b;border-radius:12px;padding:12px;font-size:13px}.feature b{display:block;color:var(--gold);margin-bottom:3px}
-.note{font-size:12px;line-height:1.6;color:#aeb7c6}footer{text-align:center;color:#8792a4;font-size:11px;padding:14px}
-.range{display:block;width:100%;margin:8px 0 12px}.tag{display:inline-block;font-size:11px;padding:3px 7px;border-radius:99px;background:#30394a;color:#e7d5aa;margin-bottom:8px}
-@media(max-width:420px){main{padding:17px 12px}.features{grid-template-columns:1fr 1fr}}
-</style></head>
+main{width:min(960px,100%);margin:auto;padding:15px 12px 32px}
+header{display:flex;align-items:center;gap:11px;margin:2px 2px 14px}
+.logo{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 0 0 3px #d9b66f22}
+h1{font-size:18px;margin:0;letter-spacing:.2px}header p{margin:2px 0 0;color:var(--muted);font-size:11px}
+.card{background:rgba(25,31,44,.97);border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0;box-shadow:0 9px 24px #0002}
+.upload{border:1.5px dashed #78643d;border-radius:13px;padding:16px 10px;text-align:center;background:#202838}
+.upload strong{display:block;margin:5px 0 3px}.muted{color:var(--muted);font-size:12px}
+button,.filebtn{border:1px solid transparent;border-radius:9px;padding:9px 11px;font-weight:650;background:var(--gold);color:#171923;cursor:pointer;font-size:12px;min-height:37px}
+button:disabled{opacity:.38;cursor:not-allowed}button.secondary,.filebtn.secondary{background:#30394a;color:#fff;border-color:#465166}
+button.ghost{background:#202838;color:#e9edf5;border-color:#3a465a}button.active{background:#66512c;color:#fff;border-color:#c9a65f}
+input[type=file]{display:none}.preview{display:none;margin-top:11px}.preview img{display:block;width:100%;max-height:550px;object-fit:contain;border-radius:11px;background:#0b0d12}
+.status{font-size:12px;color:#c9d1de;margin-top:7px;min-height:18px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.actions button{flex:1}
+.heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 9px}h2{font-size:14px;margin:0}.step{font-size:9px;color:#171923;background:var(--gold);border-radius:20px;padding:3px 7px;font-weight:800}
+.toolbar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.tool{background:#222b3b;color:#f3f5f9;border:1px solid #364257;padding:7px 3px;min-height:49px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px}.tool .ico{font-size:16px;line-height:1}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:9px}.tab{background:#202838;color:#d9e0ec;border:1px solid #39465a;padding:8px 2px;font-size:11px}.tab.active{background:var(--gold);color:#171923;border-color:var(--gold)}
+.panel{display:none}.panel.active{display:block}.control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.control{background:#202838;border:1px solid #344055;border-radius:10px;padding:8px 9px;min-width:0}.control-head{display:flex;justify-content:space-between;gap:5px;align-items:center;font-size:11px;color:#e4e9f2;margin-bottom:5px}.control output{color:var(--gold);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--gold);display:block;margin:0}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.row-actions button{flex:1}
+.note{font-size:10px;line-height:1.5;color:#aeb7c6;margin:8px 1px 0}.small-label{font-size:11px;color:var(--muted)}
+footer{text-align:center;color:#8792a4;font-size:10px;padding:12px}
+@media(min-width:620px){main{padding:20px 18px 38px}.toolbar{grid-template-columns:repeat(8,minmax(0,1fr))}.control-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.card{padding:15px}}
+@media(max-width:350px){.toolbar{grid-template-columns:repeat(3,minmax(0,1fr))}.tabs{grid-template-columns:repeat(2,1fr)}.control-grid{grid-template-columns:1fr}}
+</style>
+</head>
 <body><main>
-<header><div class="logo">✦</div><div><h1>FARUK AI PHOTO STUDIO</h1><p>Free AI Photo Editing • Mobile Edition</p></div></header>
+<header><img class="logo" src="assets/faruk-logo.jpg" alt="Faruk profile logo"><div><h1>FARUK AI PHOTO STUDIO</h1><p>Compact Photo Editing Studio • Mobile & Desktop</p></div></header>
 <section class="card">
- <div class="upload"><div style="font-size:32px">📷</div><strong>আপনার ছবি আপলোড করুন</strong><div class="muted">JPG, PNG বা WebP নির্বাচন করুন</div>
- <div class="actions" style="justify-content:center"><label class="filebtn" for="photo">ছবি নির্বাচন করুন</label></div><input id="photo" type="file" accept="image/*"></div>
- <div class="preview" id="preview"><img id="photoView" alt="ছবির প্রিভিউ"><div class="status" id="status">ছবি প্রস্তুত।</div></div>
- <div class="card" style="padding:13px;margin-top:14px;background:#151b27">
- <h2>ম্যানুয়াল কালার কন্ট্রোল</h2>
- <label class="muted">উজ্জ্বলতা <input class="range" id="brightness" type="range" min="-30" max="30" value="5"></label>
- <label class="muted">কনট্রাস্ট <input class="range" id="contrast" type="range" min="80" max="140" value="108"></label>
- <label class="muted">রঙের উজ্জ্বলতা <input class="range" id="saturation" type="range" min="70" max="150" value="112"></label>
- <div class="actions"><button class="secondary" id="reset" type="button">রিসেট</button><button class="secondary" id="compare" type="button" disabled>আগের ছবি দেখুন</button></div></div>
- <h2 style="margin-top:18px">AI টুলস</h2><div class="tag">প্রথমবার মডেল ডাউনলোডে ইন্টারনেট লাগবে</div>
- <div class="actions"><button id="color" disabled>🎨 Color Enhance</button><button id="blur" disabled>📷 AI Background Blur</button></div>
- <div class="actions"><button id="upscale" disabled>🔎 AI HD Upscale</button><button id="restore" disabled>🧰 AI Restoration</button></div>
- <div class="actions"><button id="face" disabled>🙂 Face Detail Enhance</button><button class="secondary" id="download" disabled>HD DOWNLOAD</button></div>
+ <div class="upload"><div style="font-size:26px">📷</div><strong>আপনার ছবি আপলোড করুন</strong><div class="muted">JPG, PNG বা WebP • ছবি আপনার ব্রাউজারেই প্রসেস হবে</div><div style="margin-top:9px"><label class="filebtn" for="photo">＋ ছবি নির্বাচন করুন</label></div><input id="photo" type="file" accept="image/*"></div>
+ <div class="preview" id="preview"><img id="photoView" alt="ছবির প্রিভিউ"><div class="status" id="status">ছবি প্রস্তুত।</div>
+ <div class="actions"><button class="secondary" id="compare" disabled>Before / After</button><button class="secondary" id="resetAll" disabled>↺ সব রিসেট</button><button id="download" disabled>⬇ HD Download</button></div></div>
 </section>
-<section class="card"><h2>ফিচার ও সীমাবদ্ধতা</h2><div class="features">
-<div class="feature"><b>AI Background Blur</b>MODNet portrait matting মডেল দিয়ে subject mask তৈরি করে blur করা হবে।</div>
-<div class="feature"><b>AI HD Upscale</b>Swin2SR মডেল দিয়ে 2× super-resolution চেষ্টা করবে।</div>
-<div class="feature"><b>AI Photo Restoration</b>উপলব্ধ super-resolution মডেল দিয়ে ডিটেইল/স্পষ্টতা উন্নত করার চেষ্টা করবে; ক্ষতিগ্রস্ত ছবি পুরোপুরি পুনর্গঠন নিশ্চিত নয়।</div>
-<div class="feature"><b>Color Enhance</b>ব্রাউজারে pixel-based color, light ও contrast correction; এটি আলাদা AI মডেল নয়।</div>
-</div><p class="note">গুরুত্বপূর্ণ: AI মডেলগুলো বিনামূল্যে public model repositories থেকে ব্রাউজারে লোড হয়; প্রথমবার মডেল ডাউনলোডে বড় ডেটা লাগতে পারে এবং ফোনভেদে ধীর হতে পারে। ছবি আপনার ব্রাউজারেই প্রসেস হয়। Face Detail Enhance এখানে পরিচয়-পরিবর্তনকারী generative model নয়—এটি রক্ষণশীল local sharpening; তাই একে প্রকৃত face-restoration AI বলা হচ্ছে না। প্রকৃত GFPGAN/CodeFormer face restoration আলাদা model integration ও পরীক্ষা ছাড়া সক্রিয় করা হয়নি।</p></section>
-<footer>FARUK AI PHOTO STUDIO • Free browser-side processing</footer>
+<section class="card"><div class="heading"><h2>১. Crop ও Transform</h2><span class="step">TOOLS</span></div>
+ <div class="toolbar">
+ <button class="tool" id="rotL" disabled><span class="ico">↶</span>বামে ঘোরান</button><button class="tool" id="rotR" disabled><span class="ico">↷</span>ডানে ঘোরান</button>
+ <button class="tool" id="flipH" disabled><span class="ico">⇋</span>Flip H</button><button class="tool" id="flipV" disabled><span class="ico">⇅</span>Flip V</button>
+ <button class="tool" data-crop="1" disabled><span class="ico">▣</span>Square</button><button class="tool" data-crop="0.8" disabled><span class="ico">▯</span>Portrait 4:5</button>
+ <button class="tool" data-crop="1.7778" disabled><span class="ico">▭</span>Landscape</button><button class="tool" data-crop="0" disabled><span class="ico">⛶</span>Original</button>
+ </div><p class="note">Crop বাটনগুলো ছবির মাঝখান থেকে নির্দিষ্ট অনুপাতে ক্রপ করে। নির্দিষ্ট অংশ টেনে বেছে নেওয়ার crop frame এই সংস্করণে নেই।</p>
+</section>
+<section class="card"><div class="heading"><h2>২. Color ও Light Adjustment</h2><span class="step">MANUAL EDIT</span></div>
+ <div class="tabs"><button class="tab active" data-tab="color">🎨 Color</button><button class="tab" data-tab="light">☀ Light</button><button class="tab" data-tab="detail">✧ Detail</button><button class="tab" data-tab="effects">◈ Effects</button></div>
+ <div class="panel active" id="p-color"><div class="control-grid">
+ <label class="control"><span class="control-head">Saturation <output id="o-saturation">112</output></span><input id="saturation" type="range" min="0" max="180" value="112"></label>
+ <label class="control"><span class="control-head">Temperature <output id="o-temperature">0</output></span><input id="temperature" type="range" min="-40" max="40" value="0"></label>
+ <label class="control"><span class="control-head">Tint <output id="o-tint">0</output></span><input id="tint" type="range" min="-30" max="30" value="0"></label>
+ <label class="control"><span class="control-head">Vibrance <output id="o-vibrance">15</output></span><input id="vibrance" type="range" min="0" max="60" value="15"></label></div></div>
+ <div class="panel" id="p-light"><div class="control-grid">
+ <label class="control"><span class="control-head">Brightness <output id="o-brightness">8</output></span><input id="brightness" type="range" min="-50" max="50" value="8"></label>
+ <label class="control"><span class="control-head">Contrast <output id="o-contrast">108</output></span><input id="contrast" type="range" min="50" max="160" value="108"></label>
+ <label class="control"><span class="control-head">Highlights <output id="o-highlights">0</output></span><input id="highlights" type="range" min="-50" max="30" value="0"></label>
+ <label class="control"><span class="control-head">Shadows <output id="o-shadows">0</output></span><input id="shadows" type="range" min="0" max="60" value="0"></label></div></div>
+ <div class="panel" id="p-detail"><div class="control-grid">
+ <label class="control"><span class="control-head">Sharpness <output id="o-sharpness">20</output></span><input id="sharpness" type="range" min="0" max="80" value="20"></label>
+ <label class="control"><span class="control-head">Clarity <output id="o-clarity">10</output></span><input id="clarity" type="range" min="0" max="50" value="10"></label>
+ <label class="control"><span class="control-head">Denoise <output id="o-denoise">0</output></span><input id="denoise" type="range" min="0" max="30" value="0"></label>
+ <label class="control"><span class="control-head">Dehaze <output id="o-dehaze">0</output></span><input id="dehaze" type="range" min="0" max="40" value="0"></label></div></div>
+ <div class="panel" id="p-effects"><div class="control-grid">
+ <label class="control"><span class="control-head">Vignette <output id="o-vignette">0</output></span><input id="vignette" type="range" min="0" max="60" value="0"></label>
+ <label class="control"><span class="control-head">Warm Glow <output id="o-glow">0</output></span><input id="glow" type="range" min="0" max="30" value="0"></label></div>
+ <div class="row-actions"><button class="ghost" id="natural" disabled>Natural</button><button class="ghost" id="vivid" disabled>Vivid</button><button class="ghost" id="dslr" disabled>DSLR Look</button></div></div>
+ <div class="row-actions"><button class="secondary" id="resetAdjust" disabled>Reset Controls</button><button id="apply" disabled>Apply Changes</button></div>
+</section>
+<section class="card"><div class="heading"><h2>৩. One-Click Enhancement</h2><span class="step">QUICK ENHANCE</span></div>
+ <div class="toolbar"><button class="tool" id="auto" disabled><span class="ico">✨</span>Auto Enhance</button><button class="tool" id="naturalColor" disabled><span class="ico">🌿</span>Natural Color</button><button class="tool" id="hdr" disabled><span class="ico">☀</span>HDR Effect</button><button class="tool" id="sharpen" disabled><span class="ico">✧</span>Sharpen</button></div>
+ <p class="note">এগুলো Canvas-ভিত্তিক ফটো প্রসেসিং ফিচার; প্রকৃত AI জেনারেটিভ এডিটিং, AI Face Restoration বা AI Background Removal নয়।</p>
+</section>
+<footer>FARUK AI PHOTO STUDIO • Your photo stays on your device</footer>
 </main>
-<script type="module">
-import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2';
-env.allowLocalModels = false;
-env.useBrowserCache = true;
+<script>
 const $=id=>document.getElementById(id);
-const fileInput=$('photo'), view=$('photoView'), preview=$('preview'), statusEl=$('status');
-const buttons=['color','blur','upscale','restore','face','download','compare'].map($);
-const [colorBtn,blurBtn,upscaleBtn,restoreBtn,faceBtn,downloadBtn,compareBtn]=buttons;
-const brightness=$('brightness'),contrast=$('contrast'),saturation=$('saturation');
-let original=null, originalUrl=null, outputCanvas=null, originalName='photo', showingOriginal=false;
-let segmenterPromise=null, upscalePromise=null;
-function setStatus(s){statusEl.textContent=s}
-function enableTools(v){['color','blur','upscale','restore','face'].forEach(id=>$(id).disabled=!v);downloadBtn.disabled=!v||!outputCanvas;compareBtn.disabled=!v||!outputCanvas}
-function loadFile(f){
- if(!f)return;if(!f.type.startsWith('image/')){setStatus('একটি ছবি নির্বাচন করুন।');return}
- if(originalUrl)URL.revokeObjectURL(originalUrl);
- originalName=f.name.replace(/\.[^.]+$/,'')||'photo';originalUrl=URL.createObjectURL(f);
- const img=new Image();img.onload=()=>{original=img;view.src=originalUrl;preview.style.display='block';outputCanvas=null;showingOriginal=false;enableTools(true);downloadBtn.disabled=true;compareBtn.disabled=true;setStatus(`ছবি প্রস্তুত: ${img.naturalWidth} × ${img.naturalHeight}px। একটি টুল বেছে নিন।`)};img.onerror=()=>setStatus('ছবিটি খোলা যায়নি। অন্য ছবি চেষ্টা করুন।');img.src=originalUrl;
+const ids=['brightness','contrast','saturation','temperature','tint','vibrance','highlights','shadows','sharpness','clarity','denoise','dehaze','vignette','glow'];
+const defaults={brightness:8,contrast:108,saturation:112,temperature:0,tint:0,vibrance:15,highlights:0,shadows:0,sharpness:20,clarity:10,denoise:0,dehaze:0,vignette:0,glow:0};
+let img=null,base=null,edited=null,name='photo',rotation=0,fx=1,fy=1,ratio=null,showOriginal=false,timer;
+const status=$('status'),view=$('photoView'),preview=$('preview');
+const toolButtons=[...document.querySelectorAll('.tool'),$('compare'),$('resetAll'),$('download'),$('resetAdjust'),$('apply'),$('natural'),$('vivid'),$('dslr')];
+function enable(v){toolButtons.forEach(b=>b.disabled=!v)}
+function labels(){ids.forEach(id=>$('o-'+id).textContent=$(id).value)}
+function resetVals(){ids.forEach(id=>$(id).value=defaults[id]);labels()}
+function baseImage(){
+ const max=3000,s=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));
+ let w=Math.round(img.naturalWidth*s),h=Math.round(img.naturalHeight*s);
+ if(ratio){if(w/h>ratio)w=Math.round(h*ratio);else h=Math.round(w/ratio)}
+ const c=document.createElement('canvas');c.width=w;c.height=h;
+ const sx=(img.naturalWidth-w/s)/2,sy=(img.naturalHeight-h/s)/2;
+ c.getContext('2d').drawImage(img,sx,sy,w/s,h/s,0,0,w,h);return c;
 }
-fileInput.addEventListener('change',()=>loadFile(fileInput.files[0]));
-function drawBase(maxSide=2400){
- const scale=Math.min(1,maxSide/Math.max(original.naturalWidth,original.naturalHeight));
- const c=document.createElement('canvas');c.width=Math.max(1,Math.round(original.naturalWidth*scale));c.height=Math.max(1,Math.round(original.naturalHeight*scale));
- c.getContext('2d').drawImage(original,0,0,c.width,c.height);return c;
+function clamp(v){return Math.max(0,Math.min(255,v))}
+function render(){
+ if(!img)return;clearTimeout(timer);status.textContent='ছবি প্রসেস হচ্ছে…';
+ timer=setTimeout(()=>{
+ const src=base||baseImage(),w=src.width,h=src.height,swap=Math.abs(rotation)%180===90;
+ const c=document.createElement('canvas');c.width=swap?h:w;c.height=swap?w:h;
+ const ctx=c.getContext('2d',{willReadFrequently:true});ctx.translate(c.width/2,c.height/2);ctx.rotate(rotation*Math.PI/180);ctx.scale(fx,fy);ctx.drawImage(src,-w/2,-h/2);
+ const im=ctx.getImageData(0,0,c.width,c.height),d=im.data;
+ const v=id=>+$(id).value,co=v('contrast')/100,br=v('brightness'),sat=v('saturation')/100,temp=v('temperature'),tint=v('tint'),vib=v('vibrance')/100,hi=v('highlights'),sh=v('shadows'),deh=v('dehaze'),gl=v('glow');
+ for(let i=0;i<d.length;i+=4){let r=d[i],g=d[i+1],b=d[i+2];r=(r-128)*co+128+br+temp*.55+tint*.12;g=(g-128)*co+128+br-tint*.22;b=(b-128)*co+128+br-temp*.55+tint*.12;let l=.2126*r+.7152*g+.0722*b,spread=Math.max(r,g,b)-Math.min(r,g,b),s=sat*(1+vib*(1-Math.min(1,spread/255)));r=l+(r-l)*s;g=l+(g-l)*s;b=l+(b-l)*s;let q=l/255,shadow=sh*(1-q)*(1-q)*.55,highlight=hi*q*q;r+=shadow+highlight+deh*.4+gl*.35;g+=shadow+highlight+deh*.4+gl*.18;b+=shadow+highlight+deh*.4-gl*.12;d[i]=clamp(r);d[i+1]=clamp(g);d[i+2]=clamp(b)}
+ ctx.putImageData(im,0,0);
+ const sharp=v('sharpness')/100*.8+v('clarity')/100*.3,noise=v('denoise');
+ if(sharp||noise){const a=ctx.getImageData(0,0,c.width,c.height),tmp=document.createElement('canvas');tmp.width=c.width;tmp.height=c.height;const tc=tmp.getContext('2d');tc.filter=`blur(${noise?Math.max(.25,noise/35):.7}px)`;tc.drawImage(c,0,0);const b=tc.getImageData(0,0,c.width,c.height),ad=a.data,bd=b.data;for(let i=0;i<ad.length;i+=4)for(let k=0;k<3;k++)ad[i+k]=clamp(ad[i+k]+(ad[i+k]-bd[i+k])*sharp);ctx.putImageData(a,0,0)}
+ const vig=v('vignette');if(vig){const g=ctx.createRadialGradient(c.width/2,c.height/2,Math.min(c.width,c.height)*.25,c.width/2,c.height/2,Math.max(c.width,c.height)*.72);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,`rgba(0,0,0,${vig/160})`);ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height)}
+ edited=c;showOriginal=false;view.src=c.toDataURL('image/jpeg',.94);$('download').disabled=false;$('compare').disabled=false;status.textContent='এডিট সম্পন্ন • HD JPEG ডাউনলোড করতে পারবেন';
+ },30);
 }
-function showCanvas(c,msg='সম্পন্ন।'){
- outputCanvas=c;view.src=c.toDataURL('image/jpeg',.96);downloadBtn.disabled=false;compareBtn.disabled=false;showingOriginal=false;compareBtn.textContent='আগের ছবি দেখুন';setStatus(msg);
-}
-function toCanvas(imageLike){
- if(imageLike instanceof HTMLCanvasElement)return imageLike;
- const c=document.createElement('canvas');c.width=imageLike.width||imageLike.naturalWidth;c.height=imageLike.height||imageLike.naturalHeight;
- c.getContext('2d').drawImage(imageLike,0,0,c.width,c.height);return c;
-}
-function enhanceColor(){
- if(!original)return;setStatus('রঙ ও আলো উন্নত করা হচ্ছে…');
- const c=drawBase(3200),ctx=c.getContext('2d',{willReadFrequently:true}),im=ctx.getImageData(0,0,c.width,c.height),d=im.data;
- const br=Number(brightness.value)/255,co=Number(contrast.value)/100,sa=Number(saturation.value)/100;
- for(let i=0;i<d.length;i+=4){let r=d[i]/255,g=d[i+1]/255,b=d[i+2]/255;r=(r-.5)*co+.5+br;g=(g-.5)*co+.5+br;b=(b-.5)*co+.5+br;const l=.2126*r+.7152*g+.0722*b;r=l+(r-l)*sa;g=l+(g-l)*sa;b=l+(b-l)*sa;d[i]=Math.max(0,Math.min(255,r*255));d[i+1]=Math.max(0,Math.min(255,g*255));d[i+2]=Math.max(0,Math.min(255,b*255))}
- ctx.putImageData(im,0,0);const blur=document.createElement('canvas');blur.width=c.width;blur.height=c.height;const bctx=blur.getContext('2d');bctx.filter='blur(1px)';bctx.drawImage(c,0,0);
- const a=ctx.getImageData(0,0,c.width,c.height),b=bctx.getImageData(0,0,c.width,c.height);for(let i=0;i<a.data.length;i+=4)for(let k=0;k<3;k++)a.data[i+k]=Math.max(0,Math.min(255,a.data[i+k]+(a.data[i+k]-b.data[i+k])*.18));ctx.putImageData(a,0,0);showCanvas(c,'Color Enhance সম্পন্ন (pixel-based; AI model নয়)।');
-}
-colorBtn.addEventListener('click',enhanceColor);
-async function getSegmenter(){if(!segmenterPromise)segmenterPromise=pipeline('background-removal','Xenova/modnet',{dtype:'q8'});return segmenterPromise}
-async function backgroundBlur(){
- if(!original)return;blurBtn.disabled=true;setStatus('MODNet AI মডেল লোড হচ্ছে/চালু হচ্ছে… প্রথমবার সময় লাগতে পারে।');
- try{
-  const pipe=await getSegmenter();const maskResult=await pipe(originalUrl);if(!maskResult?.length)throw new Error('মডেল থেকে mask পাওয়া যায়নি');
-  const mask=toCanvas(maskResult[0].toCanvas?maskResult[0].toCanvas():maskResult[0]);
-  const base=drawBase(1800),w=base.width,h=base.height,c=document.createElement('canvas');c.width=w;c.height=h;const ctx=c.getContext('2d');
-  ctx.filter='blur(12px)';ctx.drawImage(base,0,0,w,h);ctx.filter='none';
-  const fg=document.createElement('canvas');fg.width=w;fg.height=h;const fctx=fg.getContext('2d');fctx.drawImage(base,0,0,w,h);
-  const mc=document.createElement('canvas');mc.width=w;mc.height=h;const mctx=mc.getContext('2d');mctx.drawImage(mask,0,0,w,h);
-  const maskData=mctx.getImageData(0,0,w,h),fd=fctx.getImageData(0,0,w,h),bd=ctx.getImageData(0,0,w,h);
-  for(let i=0;i<maskData.data.length;i+=4){let alpha=maskData.data[i+3];if(alpha===0)alpha=maskData.data[i];fd.data[i+3]=Math.round(255*alpha/255)}
-  fctx.putImageData(fd,0,0);ctx.drawImage(fg,0,0);showCanvas(c,'AI background blur সম্পন্ন। Subject mask-এর ফল ছবিভেদে ভিন্ন হতে পারে।');
- }catch(e){console.error(e);setStatus('AI Background Blur চালানো যায়নি: '+(e.message||e)+'। ইন্টারনেট/মডেল লোড পরীক্ষা করুন।')}
- finally{blurBtn.disabled=false}
-}
-blurBtn.addEventListener('click',backgroundBlur);
-async function getUpscaler(){if(!upscalePromise)upscalePromise=pipeline('image-to-image','onnx-community/swin2SR-classical-sr-x2-64',{dtype:'q8'});return upscalePromise}
-async function runUpscale(mode){
- if(!original)return;const btn=mode==='restore'?restoreBtn:upscaleBtn;btn.disabled=true;setStatus('AI super-resolution মডেল লোড হচ্ছে/চালু হচ্ছে… বড় মডেল হওয়ায় সময় লাগতে পারে।');
- try{
-  const pipe=await getUpscaler();const input=drawBase(900).toDataURL('image/png');const result=await pipe(input);
-  if(!result?.length)throw new Error('মডেল কোনো ছবি ফেরত দেয়নি');
-  const out=result[0];let c;
-  if(out.toCanvas)c=out.toCanvas();else c=toCanvas(out);
-  if(!c.width||!c.height)throw new Error('আউটপুটের মাপ পড়া যায়নি');
-  const max=3200,scale=Math.min(1,max/Math.max(c.width,c.height));
-  if(scale<1){const smaller=document.createElement('canvas');smaller.width=Math.round(c.width*scale);smaller.height=Math.round(c.height*scale);smaller.getContext('2d').drawImage(c,0,0,smaller.width,smaller.height);c=smaller}
-  showCanvas(c,mode==='restore'?'AI Restoration / Super-resolution সম্পন্ন। পুরোনো ক্ষতি পুরোপুরি ফেরানো নিশ্চিত নয়.':'AI HD Upscale সম্পন্ন। মডেলভিত্তিক super-resolution আউটপুট তৈরি হয়েছে।');
- }catch(e){console.error(e);setStatus('AI মডেল চালানো যায়নি: '+(e.message||e)+'। নেটওয়ার্ক, মডেল সাপোর্ট ও ফোনের মেমোরি পরীক্ষা করুন।')}
- finally{btn.disabled=false}
-}
-upscaleBtn.addEventListener('click',()=>runUpscale('upscale'));restoreBtn.addEventListener('click',()=>runUpscale('restore'));
-function faceDetail(){
- if(!original)return;setStatus('মুখের জন্য সংযত sharpening করা হচ্ছে। এটি face-specific AI model নয়।');
- const c=drawBase(2400),ctx=c.getContext('2d'),soft=document.createElement('canvas');soft.width=c.width;soft.height=c.height;
- const sctx=soft.getContext('2d');sctx.filter='blur(1.2px)';sctx.drawImage(c,0,0);
- const a=ctx.getImageData(0,0,c.width,c.height),b=sctx.getImageData(0,0,c.width,c.height);
- for(let i=0;i<a.data.length;i+=4)for(let k=0;k<3;k++)a.data[i+k]=Math.max(0,Math.min(255,a.data[i+k]+(a.data[i+k]-b.data[i+k])*.24));
- ctx.putImageData(a,0,0);showCanvas(c,'Face Detail Enhance সম্পন্ন: local sharpening only, AI face restoration নয়। মুখ নতুন করে তৈরি করা হয়নি।');
-}
-faceBtn.addEventListener('click',faceDetail);
-$('reset').addEventListener('click',()=>{brightness.value=5;contrast.value=108;saturation.value=112;if(original)enhanceColor()});
-[brightness,contrast,saturation].forEach(x=>x.addEventListener('change',()=>{if(original)enhanceColor()}));
-compareBtn.addEventListener('click',()=>{if(!original||!outputCanvas)return;showingOriginal=!showingOriginal;view.src=showingOriginal?originalUrl:outputCanvas.toDataURL('image/jpeg',.96);compareBtn.textContent=showingOriginal?'এডিট করা ছবি দেখুন':'আগের ছবি দেখুন';setStatus(showingOriginal?'Original image দেখানো হচ্ছে।':'Edited image দেখানো হচ্ছে।')});
-downloadBtn.addEventListener('click',()=>{if(!outputCanvas)return;const a=document.createElement('a');a.download=originalName+'-faruk-studio-hd.jpg';a.href=outputCanvas.toDataURL('image/jpeg',.97);a.click()});
-if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+$('photo').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){status.textContent='একটি ছবি নির্বাচন করুন';return}name=f.name.replace(/\.[^.]+$/,'')||'photo';const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{img=im;rotation=0;fx=fy=1;ratio=null;resetVals();base=baseImage();edited=null;preview.style.display='block';enable(true);render()};im.onerror=()=>status.textContent='ছবিটি খোলা যায়নি';im.src=u});
+ids.forEach(id=>$(id).addEventListener('input',()=>{labels();render()}));
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id==='p-'+b.dataset.tab))}));
+$('rotL').onclick=()=>{rotation=(rotation-90+360)%360;render()};$('rotR').onclick=()=>{rotation=(rotation+90)%360;render()};
+$('flipH').onclick=()=>{fx*=-1;render()};$('flipV').onclick=()=>{fy*=-1;render()};
+document.querySelectorAll('[data-crop]').forEach(b=>b.onclick=()=>{ratio=Number(b.dataset.crop)||null;base=baseImage();render()});
+$('resetAdjust').onclick=()=>{resetVals();render()};
+$('apply').onclick=()=>render();
+$('resetAll').onclick=()=>{rotation=0;fx=fy=1;ratio=null;resetVals();base=baseImage();render()};
+$('compare').onclick=()=>{if(!img||!edited)return;showOriginal=!showOriginal;view.src=showOriginal?img.src:edited.toDataURL('image/jpeg',.94);$('compare').textContent=showOriginal?'এডিটেড ছবি দেখুন':'Before / After'};
+$('download').onclick=()=>{if(!edited)return;const a=document.createElement('a');a.download=name+'-faruk-studio.jpg';a.href=edited.toDataURL('image/jpeg',.97);a.click()};
+function preset(values){Object.entries(values).forEach(([k,v])=>$(k).value=v);labels();render()}
+$('natural').onclick=()=>preset({brightness:8,contrast:108,saturation:112,temperature:2,vibrance:18,sharpness:22});
+$('vivid').onclick=()=>preset({brightness:8,contrast:115,saturation:128,vibrance:35,sharpness:28});
+$('dslr').onclick=()=>preset({brightness:7,contrast:112,saturation:116,vibrance:25,sharpness:30,clarity:16,vignette:8});
+$('auto').onclick=()=>preset({brightness:9,contrast:110,saturation:116,temperature:2,vibrance:22,sharpness:28,clarity:12,shadows:12,dehaze:5});
+$('naturalColor').onclick=()=>preset({saturation:112,vibrance:22,temperature:2,tint:0});
+$('hdr').onclick=()=>preset({contrast:112,highlights:-18,shadows:28,clarity:22,dehaze:8});
+$('sharpen').onclick=()=>preset({sharpness:48,clarity:18});
 </script></body></html>
